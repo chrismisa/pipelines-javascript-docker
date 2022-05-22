@@ -33,6 +33,13 @@ stages:
       inputs:
         targetType: 'inline'
         script: 'docker login chriscacr.azurecr.io --username 98c89365-8d18-4194-bac3-767ff4742eb6 --password phxi3v5czEECRGXoarLiUsJ._uLRrp0D8M'
+    - task: DockerCompose@0
+      inputs:
+        containerregistrytype: 'Azure Container Registry'
+        azureSubscription: 'Visual Studio Professional (3a8c49d5-87aa-489a-b9dc-0d3b4ad1e9d3)'
+        azurecontainerRegistry: $(dockerRegistryServiceConnection)
+        dockerComposeFile: '**/docker-compose.yml'
+        action: 'Build services'
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
