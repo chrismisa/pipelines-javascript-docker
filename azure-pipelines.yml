@@ -47,3 +47,5 @@ stages:
         containerRegistry: $(imageRepository)
         repository: 'pipelinepush'
         command: 'push'
+        tags: |
+          $(tag)        
