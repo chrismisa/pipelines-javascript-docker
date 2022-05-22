@@ -29,10 +29,10 @@ stages:
       vmImage: $(vmImageName)
     steps:
     
-    - task: Docker@2
+    - task: CmdLine@2
       inputs:
-        containerRegistry: 'chriscacr'
-        command: 'login'
+        script: 'az login'
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
