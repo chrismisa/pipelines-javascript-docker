@@ -29,10 +29,12 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: Bash@3
+      displayName: az login
       inputs:
         targetType: 'inline'
         script: 'az login --service-principal --username 98c89365-8d18-4194-bac3-767ff4742eb6 --password phxi3v5czEECRGXoarLiUsJ._uLRrp0D8M --tenant b31b8976-d882-4c09-9837-8c70b26007ec'
     - task: Bash@3
+      displayName: docker login
       inputs:
         targetType: 'inline'
         script: 'docker login chriscacr.azurecr.io --username 98c89365-8d18-4194-bac3-767ff4742eb6 --password phxi3v5czEECRGXoarLiUsJ._uLRrp0D8M'    
@@ -52,3 +54,8 @@ stages:
         command: 'push'
         tags: |
           $(tag)        
+    - task: Bash@3
+      displayName: logout
+      inputs:
+        targetType: 'inline'
+        script: 'docker logout chriscacr.azurecr.io; az logout '  
