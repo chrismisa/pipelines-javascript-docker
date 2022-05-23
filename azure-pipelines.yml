@@ -44,13 +44,18 @@ stages:
         command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: 'chris-acr'
+        containerRegistry: 'chris-acr-1'
         tags: |
           $(tag)
     - task: Docker@2
       inputs:
-        containerRegistry: 'chris-acr'
+        containerRegistry: 'chris-acr-1'
         repository: $(imageRepository)
         command: 'push'
         tags: |
           $(tag)        
+    - task: Bash@3
+      displayName: docker logout
+      inputs:
+        targetType: 'inline'
+        script: 'docker logout chriscacr.azurecr.io; az logout'           
