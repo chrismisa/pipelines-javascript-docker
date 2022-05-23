@@ -54,8 +54,3 @@ stages:
         command: 'push'
         tags: |
           $(tag)        
-    - task: Bash@3
-      displayName: logout
-      inputs:
-        targetType: 'inline'
-        script: 'docker logout chriscacr.azurecr.io; az logout '  
