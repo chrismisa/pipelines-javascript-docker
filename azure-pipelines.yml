@@ -42,12 +42,12 @@ stages:
         command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: 'chris-acr'
+        containerRegistry: 'chrisacr'
         tags: |
           $(tag)
     - task: Docker@2
       inputs:
-        containerRegistry: 'chris-acr'
+        containerRegistry: 'chrisacr'
         repository: $(imageRepository)
         command: 'push'
         tags: |
